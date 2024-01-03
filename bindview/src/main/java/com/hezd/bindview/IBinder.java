@@ -1,4 +1,4 @@
-package com.hezd.bindview.compiler;
+package com.hezd.bindview;
 
 /**
  * @author hezd
