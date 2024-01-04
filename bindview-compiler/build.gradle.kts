@@ -9,4 +9,6 @@ java {
 
 dependencies{
     implementation(project(":bindview-annotations"))
+    annotationProcessor("com.google.auto.service:auto-service:1.1.1")
+    compileOnly("com.google.auto.service:auto-service:1.1.1")
 }

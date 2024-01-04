@@ -1,5 +1,7 @@
 package com.hezd.bindview.compiler;
 
+import com.google.auto.service.AutoService;
+
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
@@ -30,6 +33,7 @@ import bindview.annotations.BindView;
  * 2.将Element按照Activity进行分组
  * 3.生成xxx_Binding辅助类以及bind方法
  */
+@AutoService(Processor.class)
 public class BindViewProcessor extends AbstractProcessor {
     RoundEnvironment environment;
     ProcessingEnvironment processingEnvironment;
