@@ -34,6 +34,7 @@ dependencies {
     implementation("com.google.android.material:material:1.6.0")
 
     implementation(project(":bindview-compiler"))
+    api(project(":bindview-annotations"))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

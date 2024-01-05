@@ -60,10 +60,18 @@ public class BindViewProcessor extends AbstractProcessor {
             if (element.getKind() == ElementKind.FIELD) {
                 messager.printMessage(Diagnostic.Kind.NOTE, "element:" + element);
             }
+            // 因为BindView是添加在字段上面的所以这里可以强转
             VariableElement variableElement = (VariableElement)element;
+
+            // 获取注解字段外层结构最接近的Element其实也就是Activity类型的Element强转为TypeElement
+            // 目的是获取Activity的全路径名称
             TypeElement enclosingElement = (TypeElement) variableElement.getEnclosingElement();
             String activityName = enclosingElement.getQualifiedName().toString();
-            messager.printMessage(Diagnostic.Kind.NOTE,"enclosingElement:"+activityName);
+
+            // 控制台打印日志
+            messager.printMessage(Diagnostic.Kind.NOTE,"activityName:"+activityName);
+
+            // 按照Activity进行分组
             List<VariableElement> elements = elementMap.get(activityName);
             if(elements == null){
                 elements = new ArrayList<>();
@@ -73,6 +81,8 @@ public class BindViewProcessor extends AbstractProcessor {
         }
 
         // 生成xxxBinding辅助类代码
+        // 生成规则是Activity名称为前缀拼接Binding后缀生成辅助类
+        // 辅助类中生成绑定view的代码
         for(Map.Entry<String,List<VariableElement>> entry:elementMap.entrySet()){
             String activityName = entry.getKey();
             List<VariableElement> variableList = entry.getValue();
